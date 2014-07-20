@@ -1,0 +1,141 @@
+<apex:component controller="sf4twitter.TwitterOutboundTweetsController" 
+    extensions="sf4twitter.TwitterSimpleOutboundTweetExtension,sf4twitter.SocialTemplateController" 
+    allowDML="true" >
+
+	<apex:variable var="outboundMessagesDisabled" value="{!NOT(AND(sufficientPrivileges, $ObjectType.sf4twitter__Twitter_Conversation__c.Createable))}" />
+
+	<apex:form >        	            
+	    <table>
+	    <tr>
+			<td colspan="2">
+				<div id="input_overlay"
+					onclick="$(this).hide();$(document.getElementById('{!$Component.commentbody}')).focus()"
+					style="position: absolute; margin: 3px; display: {!IF(ISBLANK(MsgTextDescriptionError),'block','none')}">
+					{!$Label.TWITTER_WHAT_IS_HAPPENING}</div> 
+				<apex:inputTextarea id="commentbody" styleClass="newDesc" value="{!MsgTextDescription}"
+					cols="60" rows="2" 
+					disabled="{!outboundMessagesDisabled}"
+					onKeyup="countLeft();"
+					onclick="$('#input_overlay').hide()"
+					onchange="$('#input_overlay').hide()"
+					onkeypress="$('#input_overlay').hide()"
+					onkeydown="$('#input_overlay').hide()"
+					onblur="if (!this.value) $('#input_overlay').show()"/>
+				<p><apex:outputText value="{!MsgTextDescriptionError}" id="errorMsg" styleClass="errorMsg"></apex:outputText></p>
+				<apex:outputPanel layout="block" style="clear:both" rendered="{!NOT(ISBLANK(resultMessage))}"> 
+			    <p><apex:outputText value="{!resultMessage}" /></p>
+				</apex:outputPanel>
+			</td>
+	   </tr>
+	   <tr>
+	       <td>
+	           <apex:outputPanel layout="block" rendered="{!if( NOT(TemplatesList.empty), true, false )}">  
+	               <apex:image value="{!URLFOR($Resource.sf4twitter__sfsocial, 'resources/icons/msg.png')}" height="22"/>
+	               <apex:outputlabel value="{!$Label.TWITTER_INSERT_MSG}"/>     
+	               <apex:outputPanel layout="inline">
+	               
+	               <apex:actionFunction action="{!generateNewTemplate}"
+	                   name="generateTemplate" rerender="commentbody"
+	                   oncomplete="countLeft(); $('.selectedTemplate option[value=\'0\']').attr('selected', 'selected'); completeFeature('.loadingGIFTemplate');">
+	               </apex:actionFunction>
+	
+	               <apex:selectList value="{!selectedTemplate}" size="1" style="width:150px" id="templateList" multiselect="false" styleClass="selectedTemplate"
+	               		onchange="$('.commentbody').val(''); $('#input_overlay').hide(); generateTemplate(); startFeature('.loadingGIFTemplate');"
+	               		disabled="{!outboundMessagesDisabled}" >
+	                   <apex:selectOptions value="{!TemplatesList}" />
+	               </apex:selectList>   
+	               &nbsp;&nbsp;
+	               <span class="loadingGIFTemplate"><img src="{!URLFOR($Resource.Loading)}" /></span>
+	               </apex:outputPanel> 
+	           </apex:outputPanel>             
+	       </td>
+	       <td width="120px">
+	           <apex:outputlabel id="countermsg" for="commentbody" styleClass="countermsg" style="{!IF(((messageMaxSize - LEN(MsgTextDescription)) < 0),'color:#FF0000;','')}" 
+	           value="{!(messageMaxSize - LEN(MsgTextDescription))}" />
+	           <apex:commandbutton value="{!$Label.Send}" action="{!sendFromLandingPage}" styleClass="sf4SocialButton" disabled="{!outboundMessagesDisabled}" />
+	       </td>
+	   </tr>
+	   <tr>
+	       <td colspan="2">&nbsp;&nbsp;</td>
+	   </tr>
+	   <tr>
+	       <td colspan="2">            
+	           <apex:outputPanel layout="block" rendered="{!NOT(twitterAccounts.empty)}">
+	               <apex:image value="{!URLFOR($Resource.sf4twitter__sfsocial, 'resources/icons/Twitter_32x32.png')}" width="22" height="22" />
+	               <apex:inputCheckbox value="{!postToTwitter}" id="sendATweetCheckBox" styleClass="sendATweetCheckBox" onClick="changeMaxSize();" />
+	               <apex:outputlabel value="{!$Label.Send_Tweet_As}" for="sendATweetCheckBox" />
+	               <apex:repeat value="{!twitterAccounts}" var="taccount" rendered="{!twitterAccounts.size = 1}">
+	                   <c:SocialOutputLink linkValue="{!taccount.label}" linkURL="/{!taccount.value}"></c:SocialOutputLink>
+	               </apex:repeat>
+	               <apex:selectList value="{!contributingto}" size="1" multiselect="false" rendered="{!twitterAccounts.size > 1}">
+	                   <apex:selectOptions value="{!twitterAccounts}" />
+	               </apex:selectList>      
+	           </apex:outputPanel>
+	       </td>
+	   </tr>               
+	   <tr>
+	       <td colspan="2">            
+	           <apex:outputPanel layout="block" rendered="{!NOT(facebookAccounts.empty)}">
+	               <apex:image value="{!URLFOR($Resource.sf4twitter__sfsocial, 'resources/icons/FaceBook_32x32.png')}" width="22" height="22" />
+	               <apex:inputCheckbox value="{!postToFacebook}" styleClass="postToFcbkCheckBox" id="postToFcbkCheckBox" onClick="changeMaxSize();"/>        
+	               <apex:outputlabel value="{!$Label.Send_Facebook_As}" for="postToFcbkCheckBox" />        
+	               <apex:repeat value="{!facebookAccounts}" var="fbaccount" rendered="{!facebookAccounts.size = 1}">
+	                   <c:SocialOutputLink linkValue="{!fbaccount.label}" linkURL="/{!fbaccount.value}"></c:SocialOutputLink>
+	               </apex:repeat>        
+	               <apex:selectList value="{!fbContributingTo}" size="1" multiselect="false" rendered="{!facebookAccounts.size > 1}">
+	                   <apex:selectOptions value="{!facebookAccounts}" />
+	               </apex:selectList>    
+	           </apex:outputPanel>
+	       </td>
+	   </tr>               
+	   <tr>
+	       <td colspan="2">            
+	           <apex:outputPanel layout="block" rendered="{!AND(!outboundMessagesDisabled, isChatterEnabled)}">
+	               <apex:image value="{!URLFOR($Resource.sf4twitter__sfsocial, 'resources/icons/chatter.png')}" width="22" height="22" />
+	               <apex:inputCheckbox styleClass="postToChatter" id="postToChatter" value="{!postToChatter}" onClick="changeMaxSize();" />
+	               <apex:outputlabel for="postToChatter" value="{!$Label.TWITTER_POST_TO_MY_FEED}" />      
+	           </apex:outputPanel>
+	       </td>
+	   </tr>               
+	</table>
+	</apex:form>
+         
+<script type="text/javascript">
+
+    function getMaxLengh(){
+        var TWITTER_MSG_MAX_SIZE = {!TWITTER_MSG_MAX_SIZE};
+        var FACEBOOK_MSG_MAX_SIZE = {!FACEBOOK_MSG_MAX_SIZE};
+        if( $('.sendATweetCheckBox').is(':checked') ) return TWITTER_MSG_MAX_SIZE;
+        if( $('.postToFcbkCheckBox').is(':checked') || $('.postToChatter').is(':checked') ) return FACEBOOK_MSG_MAX_SIZE;
+        return TWITTER_MSG_MAX_SIZE;
+    }
+    
+    function changeMaxSize(){
+        $('.countermsg').text( getMaxLengh() );
+        countLeft();
+    }
+
+    function startFeature( _image ){
+        $('input, textarea, select, .btn').attr('disabled','true');
+        $('.btn').addClass('btnDisabled');
+        if( _image != '' ) $( _image ).show();
+    }
+    
+    function completeFeature( _image ){
+        $('input, textarea, select, .btn').removeAttr('disabled');
+        $('.btn').removeClass('btnDisabled');
+        if( _image != '' ) $( _image ).hide();
+    }
+
+    function countLeft() {
+        var descriptionLength = getMaxLengh() - $('.newDesc').val().length;
+        if (descriptionLength >= 0) {
+        	$('.countermsg').css( 'color', '#069BCE' );
+        }else {
+       		$('.countermsg').css( 'color', '#FF0000' );
+        }
+        $('.countermsg').html( descriptionLength );
+    }
+</script>
+
+</apex:component>

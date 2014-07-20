@@ -1,0 +1,4 @@
+<apex:component >
+    <Say>goodbye</Say>
+    <Hangup/>
+</apex:component>

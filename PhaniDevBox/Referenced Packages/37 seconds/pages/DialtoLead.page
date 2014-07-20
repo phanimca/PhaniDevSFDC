@@ -1,0 +1,14 @@
+<apex:page controller="cloud1.DialLeadController" contentType="text/xml" showHeader="false" >
+    <Response>
+    
+     <Say>A new prospect has been created</Say>
+     <Say> Leed Name</Say>
+     <Say> {!leadNm}</Say>
+     <Say> Leed company</Say>
+     <Say> {!leadComp}</Say>
+     <Say> {!leadDesc}</Say>
+     <Say> {!leadPnMenu }</Say>
+     <Gather numDigits="1" timeout="5" action="{!PhnMenuURL}" />
+       
+    </Response>
+</apex:page>

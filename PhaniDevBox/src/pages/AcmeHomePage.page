@@ -1,0 +1,129 @@
+<apex:page showHeader="false" sidebar="false" controller="CustomerSignInPageController">
+
+<apex:stylesheet value="{!URLFOR($Resource.AcmeSiteResources, 'css/styles.css')}"/>
+<apex:image url="{!URLFOR($Resource.AcmeSiteResources, 'images/styles.css')}" width="50" height="50" />
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="780" cellspacing="0" cellpadding="0" border="0" align="center" height="115">
+  <tr> 
+    <td style="padding-left:25px" background="{!URLFOR($Resource.AcmeSiteResources, 'images/main1.jpg')}" class="logo">Acme.com</td>
+  </tr>
+</table>
+<table width="780" cellspacing="0" cellpadding="0" border="0" align="center">
+  <tr> 
+    <td bgcolor="#D2E9E7" height="250" valign="top" width="267"> 
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr> 
+          <td class="text">
+          <apex:image url="{!URLFOR($Resource.AcmeSiteResources, 'images/main3.jpg')}" width="293" height="29" />
+          </td>          
+        </tr>
+        <tr> 
+          <td style="padding-left:20px; padding-right:20px" class="text"> 
+            <p><b>Acme News<br/>
+              <br/>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</b></p>
+            <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita 
+              kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 
+              amet. </p>
+             <p>
+             <b> Live Help </b>
+             <apex:form >      
+             <apex:outputPanel id="errorPanel">
+             	<apex:pageMessages />      
+             </apex:outputPanel>
+             <div style="display:none">
+ 			 	<apex:outputText value="{!chatWidgetUrl}" id="chatWidgetUrl" style="displaye:none"/>
+			 </div>
+             <apex:outputPanel id="outerPanel">
+             <apex:outputPanel id="linkPanel" rendered="{!NOT(showEntryPane)}">
+             	<apex:commandLink action="{!showDataEntryPane}" value="Chat with an Acme Support Representative" rerender="outerPanel"/>
+             </apex:outputPanel>
+             <apex:outputPanel id="dataEntryPanel" rendered="{!showEntryPane}" >
+             <table width="250px" cellspacing="5px">
+				<tr>
+				<td>
+				<apex:outputLabel value="First Name " for="firstName"/>
+				</td>
+				<td>
+				<apex:inputField value="{!signInInfo.Customer_First_Name__c}" id="firstName" required="true" />				
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<apex:outputLabel value="Last Name " for="lastName"/>
+				</td>
+				<td>
+				<apex:inputField value="{!signInInfo.Customer_Last_Name__c}" id="lastName" required="true" />
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<apex:outputLabel value="Email Address " for="email"/>
+				</td>
+				<td>
+				<apex:inputField value="{!signInInfo.Customer_Email_Address__c}" id="email" required="true" />
+				</td>
+				</tr>
+				<tr>
+				<td colspan="2" align="right">
+					<apex:commandButton action="{!saveSignInInfo}" value="Start chatting" oncomplete="openChatWidget();" rerender="chatWidgetUrl,errorPanel" />
+				</td>
+				</tr>
+				</table>
+				
+				
+             </apex:outputPanel>
+             </apex:outputPanel>
+             <script>
+             function openChatWidget() {	
+				var apiUrl = "{!$Api.Partner_Server_URL_190}";	
+				var chatWidgetUrl = document.getElementById('{!$Component.chatWidgetUrl}').innerHTML;
+				if(chatWidgetUrl != null && chatWidgetUrl != ''){	
+					var url = apiUrl.substr(0,apiUrl.lastIndexOf('/services')) + chatWidgetUrl;	
+					window.open(url,"_blank","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=400,height=300,left=0,top=0,screen-X=0,screen-Y=0")
+				}
+				}
+             </script>
+             </apex:form>
+             </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td bgcolor="#eeeeee" valign="top" width="487"> 
+    <apex:image url="{!URLFOR($Resource.AcmeSiteResources, 'images/main2.jpg')}" width="487" height="141" />
+    <br/>
+      <table width="100%" cellspacing="0" cellpadding="0" align="center" border="0">
+        <tr> 
+          <td height="22" bgcolor="#A7D5D3" class="text" align="center"> <a href="#">Home</a> 
+            | <a href="#">Company</a> | <a href="#">Services</a> | <a href="#">Products</a> 
+            | <a href="#">Downloads</a> | <a href="#">Site Map</a> | <a href="#">Contact 
+            Us</a></td>
+        </tr>
+        <tr> 
+          <td valign="top" class="text">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td style="padding-left:20px; padding-right:20px; padding-bottom:20px" valign="top" class="text"> 
+            <p><span class="title">Welcome to Acme Website!</span></p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam 
+              erat, sed diam voluptua. At vero eos et accusam et justo duo dolores 
+              et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus 
+              est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur 
+              sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore 
+              et dolore magna aliquyam erat, sed diam voluptua. At vero eos et 
+              accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
+              no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum 
+              dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam 
+              voluptua.</p>            
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</apex:page>

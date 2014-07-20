@@ -1,0 +1,7 @@
+<apex:page contentType="text/xml" showHeader="false" controller="cloud1.DialNumberController">
+    <Response>
+    <Say>Hello, The number you have reached is in service and dialing number</Say>
+        <Dial record="true" action="{!RecordingURL}">{!$CurrentPage.parameters.Called}</Dial>
+    <!-- http://voiceforce.msdev.cs3.force.com/RecordURL -->
+    </Response>
+</apex:page>

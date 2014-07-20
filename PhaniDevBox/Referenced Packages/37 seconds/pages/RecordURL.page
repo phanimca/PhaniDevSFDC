@@ -1,0 +1,5 @@
+<apex:page controller="cloud1.RecordURL" action="{!saveMessage}" contentType="text/xml" showHeader="false">
+<Response>
+
+</Response>
+</apex:page>

@@ -1,0 +1,7 @@
+<apex:page controller="cloud1.DialLeadController" action="{!updtTsk}" contentType="text/xml" showHeader="false" >
+    <Response>
+     <Say>{!DialInputMsg}</Say>
+     <Dial>{!ldPh }</Dial>
+    </Response>
+   
+</apex:page>

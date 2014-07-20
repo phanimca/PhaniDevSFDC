@@ -1,0 +1,92 @@
+<apex:page showHeader="false" standardStylesheets="false">
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/reset.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/fm-core.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/base.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/module.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/menu.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/jquery-1.4.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/scripts.js')}"/>
+    
+    <apex:composition template="SYMCPTemplate">
+    <apex:define name="header">
+        <c:SYMCPheaderwithTabs />
+    </apex:define>
+    <apex:define name="body">  
+        <!-- Body Starts -->
+        <div id="bd" role="banner" class="commonBodyArea">
+            <div class="fm-main">
+                <div class="yui-b">
+                    <div class="yui-g border spacer2">
+                        <div class="inner spacer4">
+                            <h2 class="caps">alerts</h2>
+                            <ul class="listing">
+                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                <li>Nulla condimentum libero porttitor nisl interdum ut sollicitudin tortor tempus.</li>
+                                <li>Aenean venenatis nulla id eros blandit sed porttitor elit ullamcorper.</li>
+                                <li>Pellentesque quis neque nulla, et ullamcorper libero.</li>
+                                <li>Nam ullamcorper quam a lacus euismod fermentum.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="yui-g spacer2">
+                        <div class="yui-u first border">
+                            <div class="inner spacer4">
+                                <h2 class="caps">reports</h2>
+                                <ul class="listing">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                    <li>Nulla condimentum libero porttitor nisl interdum ut sollicitudin tortor tempus.</li>
+                                    <li>Aenean venenatis nulla id eros blandit sed porttitor elit ullamcorper.</li>
+                                    <li>Pellentesque quis neque nulla, et ullamcorper libero.</li>
+                                    <li>Nam ullamcorper quam a lacus euismod fermentum.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="yui-u border">
+                            <div class="inner spacer4">
+                                <h2 class="caps">publications</h2>
+                                <ul class="listing">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                    <li>Nulla condimentum libero porttitor nisl interdum ut sollicitudin tortor tempus.</li>
+                                    <li>Aenean venenatis nulla id eros blandit sed porttitor elit ullamcorper.</li>
+                                    <li>Pellentesque quis neque nulla, et ullamcorper libero.</li>
+                                    <li>Nam ullamcorper quam a lacus euismod fermentum.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yui-g  spacer2">
+                        <div class="yui-u first border">
+                            <div class="inner spacer4">
+                                <h2 class="caps">contracts</h2>
+                                <ul class="listing">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                    <li>Nulla condimentum libero porttitor nisl interdum ut sollicitudin tortor tempus.</li>
+                                    <li>Aenean venenatis nulla id eros blandit sed porttitor elit ullamcorper.</li>
+                                    <li>Pellentesque quis neque nulla, et ullamcorper libero.</li>
+                                    <li>Nam ullamcorper quam a lacus euismod fermentum.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="yui-u border">
+                            <div class="inner spacer4">
+                                <h2 class="caps">carbon footprints</h2>
+                                <ul class="listing">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                    <li>Nulla condimentum libero porttitor nisl interdum ut sollicitudin tortor tempus.</li>
+                                    <li>Aenean venenatis nulla id eros blandit sed porttitor elit ullamcorper.</li>
+                                    <li>Pellentesque quis neque nulla, et ullamcorper libero.</li>
+                                    <li>Nam ullamcorper quam a lacus euismod fermentum.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Body Ends -->
+    
+    
+    
+    </apex:define>
+    </apex:composition>
+</apex:page>

@@ -1,0 +1,19 @@
+<apex:page showHeader="false" id="CustomerPortalTemplate" standardStylesheets="false">
+    
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/reset.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/fm-core.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/base.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/module.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/menu.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/jquery-1.4.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/scripts.js')}"/>
+  
+  
+  <apex:insert name="header">
+    <c:SYMCPHeader />
+  </apex:insert>
+  <apex:insert name="body"/>
+  <apex:insert name="footer">
+    <c:SYMCPFooter />
+  </apex:insert>
+</apex:page>

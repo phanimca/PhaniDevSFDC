@@ -1,0 +1,102 @@
+<apex:page id="p" showHeader="false" standardStylesheets="false" controller="SYMCPLoginPageController">
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/reset.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/fm-core.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/base.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/module.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/menu.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/jquery-1.4.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/scripts.js')}"/>
+     <script>
+                                                   
+         function loginTo(input){
+             alert('start');
+             document.getElementById("p:CustomerPortalTemplate:loginformId").action='/secur/login_portal.jsp?orgId=00D90000000I4nD&portalId=06090000000Tqr5';
+                                                           
+             document.getElementById("p:CustomerPortalTemplate:loginformId").submit;
+        }
+                                                   
+  </script>
+    
+    
+    <apex:composition template="SYMCPTemplate">
+    <apex:define name="body">  
+
+    <div id="doc3">
+     <!-- Body Starts -->
+        <div id="bd" role="banner" class="bodyArea">
+            <div class="fm-main">
+                <!-- Login Area -->
+                <div class="yui-ge centerPosition loginArea">
+                    <div class="yui-u first border-right">
+                    
+                    <apex:form id="loginformId" forceSSL="true">   
+                    
+                    <apex:inputHidden id="startURL"  value="{!startURL}"/>
+                    <apex:inputHidden id="loginURL"  value="{!loginURL}"/>
+                    <apex:inputHidden id="useSecure"  value="{!useSecure}"/>
+                    <apex:inputHidden id="orgId"  value="{!orgId}"/>
+                    <apex:inputHidden id="portalId"  value="{!portalId}"/>
+                    <apex:inputHidden id="loginType"  value="{!loginType}"/>
+                    <apex:inputHidden id="action"  value="{!action}"/>
+                    
+                    <input type="hidden" name="startURL" value="" /> 
+                    <input type="hidden" name="loginURL" value="" /> 
+                    <input type="hidden" name="useSecure" value="true" /> 
+                   <input type="hidden" name="orgId" value="00D90000000I4nD" /> 
+                   <input type="hidden" name="portalId" value="06090000000Tqr5" /> 
+                   <input type="hidden" name="loginType" value="3"/> 
+                   <input type="hidden" name="action" value="loginAction"/> 
+                    
+                                                                 
+                                                <div>
+                                                    <label for="loginEmail" class="caps strong full">email / user id <em>*</em></label>
+                                                   <br/>
+                                                   <apex:inputText id="username"  maxlength="50" size="50" value="{!username}"/>
+                                                   <!-- <input type="text" name="LOGIN_userid" id="loginEmail"/> -->
+                                                    <span class="tips" id="loginEmailInfo">Enter a valid E-mail address</span>
+                                                </div>
+                                                <br/>
+                                                <div>
+                                                    <label for ="loginPassword" class="caps strong full">password <em>*</em></label>
+                                                    <br/>
+                                                    <apex:inputSecret id="password"  maxlength="50" size="50" value="{!password}"/>
+                                                    <!-- <input type="password" name="LOGIN_password" id="loginPassword"/> -->
+                                                    <span class="tips" id="loginPasswordInfo">At least 5 char with '#' and '_,-,&amp;'</span>
+                                                </div>
+                                                <div>
+                                                  <!--  <input type="checkbox" name="remember_me"id="remember_me"/> -->
+                                                  <!--  <label class="align-left">Remember me</label> -->
+                                                </div>
+                                                <br/>
+                                                <br/>
+                                                <div>
+                                                    <label class="align-left fluid"><a class="no-wrap" href="#">Forgot Password?</a> | <a class="no-wrap" href="#">Need Help</a></label>
+                                                </div>
+                                                <br/>
+                                                <br/>
+                                                <div class="btns">
+                                                   <apex:commandLink action="{!login}"  value="Login" styleClass="btn primary" />
+                                                   
+                                                  
+                                                   
+                                                   
+                                                   <apex:commandLink value="Cancel" styleClass="btn secondary"/>
+                                                   <!-- <input type="submit" value="Login" name="login" class="btn primary"/> -->
+                                                   <!-- <input type="submit" value="Cancel" name="cancel" class="btn secondary"/> -->
+                                                </div>
+                    </apex:form>                            
+                                        
+                    </div>
+                    <div class="yui-u">
+                        <apex:image url="{!URLFOR($Resource.CustomerPortal, 'media/images/atomium-img.png')}" alt="Fellon McCord Logo" title="Welcome to Fellon McCord" />
+            
+                    </div>
+                </div>
+                <!-- Login Area Ends -->
+            </div>
+        </div>
+        <!-- Body Ends -->
+    </div>
+   </apex:define> 
+  </apex:composition>
+</apex:page>

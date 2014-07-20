@@ -1,0 +1,59 @@
+<apex:page standardController="Account" extensions="cloud1.ClickToCall" showHeader="false">
+    <style type="text/css">
+    body {
+		font-family:'Arial','Helvetica',sans-serif;
+		font-size:75%;
+	}
+	a:link {
+COLOR: #000000;
+}
+a:visited {
+COLOR: #000000;
+}
+a:hover {
+COLOR: #000000;
+}
+a:active {
+COLOR: #000000;
+}
+    </style>
+    <script>
+    	function loadfn()
+    	{
+    		document.getElementById('{!$Component.form1.ReturnCode}').style.display='none';
+    	}
+    	
+    	function Completefn()
+    	{
+    		document.getElementById('{!$Component.form1.ReturnCode}').style.display='block';
+    	}
+    </script>
+    <Body onload="loadfn()">
+    <div style="float:left">
+    	<apex:form id="form1">
+    	     <apex:outputLabel value="Click the number to call: "/>
+    	     <table>
+    	     <tr>
+    	     <td>
+    	     <apex:repeat value="{!AllNewLabels}" var="perl" ><br/>
+    	     <apex:outputtext value="{!perl}"></apex:outputtext>
+    	     </apex:repeat>
+    	     </td>
+    	     <td>
+    	     <apex:repeat value="{!AllValues}" var="perl1" ><br/>
+    	     <apex:commandlink id="ClickToCallLink" value="{!perl1}" action="{!CallNumber}" oncomplete="Completefn()"reRender="Results">
+               <apex:param name="perl1" value="{!perl1}"/>
+               </apex:commandlink>
+    	     </apex:repeat>
+ 
+    	     </td>
+    	     </tr>
+    	     </table>
+    	        	        	     	<apex:outputPanel id="Results"> 
+    			<b><apex:outputLabel id="ReturnCode" value="{!ReturnCode}"></apex:outputLabel></b>
+    		</apex:outputPanel>
+    	</apex:form>
+    	     	
+    </div>
+   </Body> 
+</apex:page>

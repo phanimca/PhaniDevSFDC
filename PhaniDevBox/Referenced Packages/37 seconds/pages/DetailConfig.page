@@ -1,0 +1,433 @@
+<apex:page sidebar="True" showHeader="True" controller="cloud1.VoiceConfigClassDetail" title="ClickToCall Account" tabStyle="cloud1__VoicePhoneConfig__c">
+<!--controller="overviewclass" action="{!loadpage}">  action="{!loadpage}" -->
+ <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to Mansa System</title>
+<apex:stylesheet id="ssheet1" value="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/css/template.css')}"/>
+
+<script type="text/javascript">
+<!--
+function MM_findObj(n, d) { //v4.01
+alert('MM_findObj');
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function MM_preloadImages() { //v3.0
+alert('MM_preloadImages');
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_swapImage() { //v3.0alert('MM_swapImage() ');
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+<script type="text/javascript">
+function mover(id)
+{
+    if(id=='cbtngetapi'){document.getElementById('{!$Component.form1.cbtngetapi}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/1_active.png')}";
+    document.getElementById('td1').style.color="Red";}
+/*    if(id=='Image12'){document.getElementById('Image12').src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/arw.png')}";
+    document.getElementById('td12').style.color="Red";}*/
+    if(id=='cbtnoverview'){document.getElementById('{!$Component.form1.cbtnoverview}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/arw.png')}";
+    document.getElementById('td11').style.color="Red";}
+    if(id=='cbtnsetup'){document.getElementById('{!$Component.form1.cbtnoverview}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/2_active.png')}";
+    document.getElementById('td2').style.color="Red";}
+    if(id=='cbtnremset'){document.getElementById('{!$Component.form1.cbtnremset}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/3_active.png')}";
+    document.getElementById('td3').style.color="Red";}
+    if(id=='cbtnsync'){document.getElementById('{!$Component.form1.cbtnsync}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/4_active.png')}";
+    document.getElementById('td4').style.color="Red";}
+    if(id=='cbtnschedule'){document.getElementById('{!$Component.form1.cbtnschedule}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/5_active.png')}";
+    document.getElementById('td5').style.color="Red";}
+}
+function mout(id)
+{
+    if(id=='cbtngetapi'){document.getElementById('{!$Component.form1.cbtngetapi}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/1.png')}";
+    document.getElementById('td1').style.color="Black";}
+/*    if(id=='Image12'){document.getElementById('Image12').src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/arw.png')}";
+    document.getElementById('td12').style.color="Black";}*/
+    if(id=='cbtnoverview'){document.getElementById('{!$Component.form1.cbtnoverview}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/arw.png')}";
+    document.getElementById('td11').style.color="Black";}
+    if(id=='cbtnsetup'){document.getElementById('{!$Component.form1.cbtnsetup}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/2.png')}";
+    document.getElementById('td2').style.color="Black";}
+    if(id=='cbtnremset'){document.getElementById('{!$Component.form1.cbtnremset}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/3.png')}";
+    document.getElementById('td3').style.color="Black";}
+    if(id=='cbtnsync'){document.getElementById('{!$Component.form1.cbtnsync}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/4.png')}";
+    document.getElementById('td4').style.color="Black";}
+    if(id=='cbtnschedule'){document.getElementById('{!$Component.form1.cbtnschedule}').style.backgroundImage="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/5.png')}";
+    document.getElementById('td5').style.color="Black";}
+}
+</script> 
+</head>
+
+<body  onLoad="MM_preloadImages('{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/1_active.png')}','{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/2_active.png')}','{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/3_active.png')}','{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/4_active.png')}','{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/5_active.png')}')">
+<table cellpadding="0" cellspacing="0" border="0" width="902px" align="center"><tr><td><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td valign="top"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td ><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><table cellpadding="0" cellspacing="0" border="0" width="902px" align="center">
+                  <!-- Code for Overview Header Content-->  
+  <tr>
+
+<td align ="center" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/header.png')}); background-repeat:repeat-x; height:40px;width:902;font-family:Arial, Helvetica, sans-serif;font-size:35px;"><b>CloudFone</b></td>
+  </tr>
+  <tr>
+    <td height="15px"></td>
+  </tr>
+                    <!-- Code for SIDEBAR Content-->                    
+  <tr>  
+    <td><apex:form id="form1">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td width="280px" valign="top"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_left.png')}); background-repeat:no-repeat;" width="15px" height="43px"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_repeat.png')}); background-repeat:repeat-x;" class="arial26"><b>Start Here</b></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_right.png')}); background-repeat:no-repeat;" width="14px"></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td style="border-left:solid 1px #e4e4e4;border-right:solid 1px #e4e4e4; padding-left:20px; padding-right:20px;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td height="10px">
+                    </td>
+                </tr>
+                    <!-- CODE FOR OVER VIEW BUTTON -->
+              <tr>
+              <td valign="middle" height="40px">
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" onmouseout="mout('cbtnoverview')" onmouseover="mover('cbtnoverview')"><tr>
+              <td width="38px">
+              <apex:commandButton id="cbtnoverview" action="{!loadpage}" style="bgcolor:white;background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/arw.png')});height:33px;width:36px;border:none;" />
+              </td><td style="Vertical-align:middle" id="td11">CloudFone Overview</td></tr>
+              </table>
+              </td>
+              </tr>
+                    <!-- CODE FOR Horizontal Line-->              
+              <tr>
+                <td>
+                    <hr></hr>
+                </td>
+              </tr>
+               
+                    <!-- CODE FOR Register Outgoing Caller Id BUTTON -->
+              <tr>
+              <td valign="middle" height="40px">
+              <table cellpadding="0" cellspacing="0" border="0" width="100%" onmouseout="mout('cbtngetapi')" onmouseover="mover('cbtngetapi')"><tr>
+              <td width="38px">
+              <apex:commandButton id="cbtngetapi" action="{!NewCallerId}" style="bgcolor:white;background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/1.png')});height:33px;width:36px;border:none;" />
+              </td><td style="Vertical-align:middle" id="td1">Register Outgoing Caller Id</td></tr>
+              </table>
+              </td>
+              </tr>
+                    <!-- CODE FOR User Phone BUTTON -->              
+              <tr>
+              <td valign="middle" height="40px">
+              <table cellpadding="0" cellspacing="0" border="0" width="100%"  onmouseout="mout('cbtnsetup')" onmouseover="mover('cbtnsetup')"><tr>
+              <td width="38px">
+              <apex:commandButton id="cbtnsetup" action="{!UsrPhoneSetup}" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/2.png')});height:33px;width:36px;border:none;bgcolor:white;" />
+              </td><td style="Vertical-align:middle" id="td2">User Phone</td></tr>
+              </table>
+              </td>
+              </tr>
+            </table>  </td>
+          </tr>
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_left.png')}); background-repeat:no-repeat;" width="15px" height="9px"></td>
+                <td style="border-bottom:solid 1px #e4e4e4;"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_right.png')}); background-repeat:no-repeat;" width="21px"></td>
+              </tr>
+            </table></td>
+          </tr></td>
+          </tr>
+        </table></apex:form></td>
+        <td width="20px"></td>
+        <td valign="top" >
+                    
+                    <!-- From here the Content Display section begins--> 
+                    
+                    
+                    <!-- Code for Overview button Content-->                    
+        
+        <apex:detail id="dtloverview" rendered="{!oview}">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">        
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_left.png')}); background-repeat:no-repeat;" width="15px" height="43px"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_repeat.png')}); background-repeat:repeat-x;" class="contentheading">CloudFone Overview</td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_right.png')}); background-repeat:no-repeat;" width="14px"></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td style="border-left:solid 1px #e4e4e4;border-right:solid 1px #e4e4e4;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td><form action="" method="post">
+                                <table cellpadding="5" cellspacing="15" border="0" width="100%" style="margin-left:10px">                                
+                                <tr>
+                                    <td><table><tr><td><image src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/tickimg.png')}" width="20" height="20"/></td><td style="valign:middle">
+                                        <b>CloudFone</b> provides <b>Click-To-Call</b> , <b>Call-To-Lead</b> and <b>Call-To-Case</b> features.
+                                        <tr><td><image src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/tickimg.png')}" width="20" height="20"/></td><td style="valign:middle">
+                                        <b>Click-To-Call</b> provides ability to dial by clicking on any phone number in salesforce that can belong to Account,Lead and Contact.
+                                        <tr><td><image src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/tickimg.png')}" width="20" height="20"/></td><td style="valign:middle">
+                                        <b>Call-To-Lead</b> provides ability that whenever new lead is created and make a call to the lead owner that <i>"New lead has been created"</i> and asks if lead owner want to get connected with lead on phone.
+                                        <tr><td><image src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/tickimg.png')}" width="20" height="20"/></td><td style="valign:middle">
+                                        <b>Call-To-Case</b> provides ability that whenever new case is created and call the case owner that <i>"You Gotta a new Case"</i> and read the company name, case description. And whenever case gets resolved, makes a call to the customer that <i>"Your case has been resolved".</i>                                      
+                                        </td></tr></table>
+                                    </td>
+                                </tr>
+                                </table>
+                                
+                    </form>  
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_left.png')}); background-repeat:no-repeat;" width="15px" height="9px"></td>
+                <td style="border-bottom:solid 1px #e4e4e4;"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_right.png')}); background-repeat:no-repeat;" width="21px"></td>
+              </tr>
+            </table></apex:detail>
+            
+                    <!-- Code for OutGoing Caller Id button Content-->                              
+            <apex:detail id="dtlremotesetup" rendered="{!OcallerId}">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">        
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_left.png')}); background-repeat:no-repeat;" width="15px" height="43px"></td>
+                <td align = "center" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_repeat.png')}); background-repeat:repeat-x;" class="contentheading">Register New Outgoing Caller Id</td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_right.png')}); background-repeat:no-repeat;" width="14px"></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td style="border-left:solid 1px #e4e4e4;border-right:solid 1px #e4e4e4;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td><apex:form >
+                <apex:messages />
+                                <table cellpadding="5" cellspacing="15" border="0" width="100%" style="margin-left:10px">                                
+                                 <apex:detail id="OutGoingeditble1" rendered="{!OutGoingeditble}"> 
+                                <tr align="center">
+                                  
+                               <td>  <h1>  <apex:outputLabel value="Click Submit to Register Outgoing Caller Id"></apex:outputLabel></h1></td>
+                               </tr>
+                                  <tr align = "center">
+                                     <td><apex:inputField value="{!VoicePhoneAdmin.cloud1__OutgoingCallerID__c}" id="OutGoingCallerId" style="border:solid 1px #dbdbdb;height:25px;width:230px" /> </td>
+                                </tr>
+                         <tr align = "center"><td>
+                     <apex:commandButton action="{!registerCallerId}"  value=""  id="register2" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/submit.png')});height:33px;width:91px;border:none;" />            
+
+                                </td></tr>
+                                </apex:detail>
+                                <apex:detail id="OutGoingNoneditble1" rendered="{!OutGoingNoneditble}">
+                                    <tr align = "center">
+                                  
+                               <td>  <h1>  <apex:outputLabel value="Please Register your Account First"></apex:outputLabel></h1></td>
+                               </tr>             
+                                </apex:detail>
+                             </table>
+                                
+                    </apex:form>  
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_left.png')}); background-repeat:no-repeat;" width="15px" height="9px"></td>
+                <td style="border-bottom:solid 1px #e4e4e4;"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_right.png')}); background-repeat:no-repeat;" width="21px"></td>
+              </tr>
+            </table></apex:detail>                          
+            
+                    <!-- Code for User Phone button Content-->                               
+            <apex:detail id="dtlsetup" rendered="{!setup}">
+       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_left.png')}); background-repeat:no-repeat;" width="15px" height="43px"></td>
+                <td align="center" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_repeat.png')}); background-repeat:repeat-x;" class="contentheading">User Phone</td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_right.png')}); background-repeat:no-repeat;" width="14px"></td>
+              </tr>
+            </table></td>
+          </tr>
+            <tr>
+                <td style="border-left:solid 1px #e4e4e4;border-right:solid 1px #e4e4e4;"><apex:form id="form2" > 
+   <!--             <form action="" method="post">-->
+                <apex:messages /> 
+                                <table cellpadding="5" cellspacing="15" border="0" width="100%" style="margin-left:10px">
+                            <apex:detail id="dtleditble" rendered="{!editable}"> 
+                                <tr>
+                                    <td>User Phone</td>
+                                    
+                                    <td> <apex:inputField value="{!VoicePhoneAdmin.cloud1__UserPhone__c}"  id="UserPhone" style="border:solid 1px #dbdbdb;height:25px;width:230px" /></td>
+                                </tr>
+                                
+                                            <tr ><td align ="right" width="120px">
+                     <apex:commandButton action="{!savePhone}"  value=""  id="save2" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/save.png')});height:33px;width:91px;border:none;" />            
+
+                                </td>  
+                                     <td width="20px">
+                     <apex:commandButton action="{!CancelPh}"  value=""  id="cancel2" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/cancel.png')});height:33px;width:91px;border:none;" />            
+
+                                </td></tr>  
+                                </apex:detail>
+                                
+                                <apex:detail id="dtlnoneditble" rendered="{!noneditable}">
+                                
+          
+                                 <tr> 
+                                    <td> User Phone</td>
+                                    
+                                    <td><table width="100%" height="25px"><tr><td width="80%" style="background-color:  lightgray;border:solid 1px #dbdbdb;height:25px;"> <apex:outputText value="{!VoicePhoneAdmin.cloud1__UserPhone__c}"   id="neditUserPhone" /></td><td></td></tr></table> </td>
+                                </tr> 
+                                    
+                            <tr ><td></td><td>
+                     <apex:commandButton action="{!edit}"  value=""  id="edit2" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/edit.png')});height:33px;width:91px;border:none;" />            
+
+                                </td></tr>                             
+                                </apex:detail>
+                                <apex:detail id="RecordNotDisplay" rendered="{!RecordNotExit}"> 
+                                <tr align = "center">
+                                  
+                               <td>  <h1>  <apex:outputLabel value="Please Register your Account First"></apex:outputLabel></h1></td>
+                               </tr>
+                                </apex:detail>   
+            <!--                      <tr>
+                                    <td colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <tr>
+                                                    <td align="right" width="120px">
+                                                    <apex:commandButton action="{!edit}" id="reset1" value="" style="background-image:url({!URLFOR($Resource.cloudfone_setup,'cloudfone/images/reset.png')});height:33px;width:91px;border:none;"/> </td>
+                                                    <td width="20px">  </td>
+                                                       <td><apex:commandButton action="{!save}"  value=""  id="submit1" style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/submit.png')});height:33px;width:91px;border:none;" /> </td>
+                                                       <td width="20px">  </td>
+                                                 <!--   <td><apex:commandButton onclick="disablflds()" value=""  id="submit1" style="background-image:url({!URLFOR($Resource.cloudfone_setup,'cloudfone/images/submit.png')});height:33px;width:91px;border:none" /> </td>
+                                                    <apex:actionFunction action="{!UpdateRecord}" name="updaterecs" id="updaterecs"/>
+                                            </tr>
+                                            </table>
+                                    </td>  
+                                </tr>  -->
+                                </table>
+                                
+<!--                    </form> --> </apex:form>
+                </td>
+              </tr>
+               <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_left.png')}); background-repeat:no-repeat;" width="15px" height="9px"></td>
+                <td style="border-bottom:solid 1px #e4e4e4;"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_right.png')}); background-repeat:no-repeat;" width="21px"></td>
+              </tr>
+            </table>
+            </apex:detail>
+
+                    <!-- Code for Schedule button Content-->                                
+            <apex:detail id="dtlschedule" rendered="{!schedule}">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">        
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_left.png')}); background-repeat:no-repeat;" width="15px" height="43px"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_repeat.png')}); background-repeat:repeat-x;" class="contentheading">Schedule Sync</td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_top_right.png')}); background-repeat:no-repeat;" width="14px"></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td style="border-left:solid 1px #e4e4e4;border-right:solid 1px #e4e4e4;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td><form action="" method="post">
+                                <table cellpadding="5" cellspacing="15" border="0" width="100%" style="margin-left:10px">                                
+                                <tr>
+                                    <td><UL>
+                                        <LI>Schedule text
+                                        <LI>Text 1.
+                                        <LI>Text 2.
+                                        <LI>Text 3.
+                                        </UL>
+                                    </td>
+                                </tr>
+                                </table>
+                                
+                    </form>  
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_left.png')}); background-repeat:no-repeat;" width="15px" height="9px"></td>
+                <td style="border-bottom:solid 1px #e4e4e4;"></td>
+                <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod_bottom_right.png')}); background-repeat:no-repeat;" width="21px"></td>
+              </tr>
+            </table></apex:detail>
+            
+            </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="25px"></td>
+  </tr>
+                            <!-- Code for Footer Content-->                     
+  <tr>
+    <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod2_top.png')}); background-repeat:no-repeat;" height="16px"></td>
+  </tr>
+  <tr>
+    <td style="background-color:#bebebe;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td width="300px"><p style="padding-left:20px; line-height:22px">Mansa Systems<br />
+          http://www.mansasys.com<br />
+          1-510-857-5700<br />
+          support@mansasys.com</p></td>
+        <td></td>
+        <td width="380px"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td height="25px" align="center">Powered By </td>
+          </tr>
+          <tr>
+            <td align="center"><img src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/Mansa_logo.png')}"  />&nbsp&nbsp<img src="{!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/Twilio_logo.png')}" width="73" height="48" /> </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td style="background-image:url({!URLFOR($Resource.cloud1__cloudfone_setup,'cloudfone/images/mod2_bottom.png')}); background-repeat:no-repeat;" height="16px"></td>
+  </tr>
+</table></td>
+                                    </tr>
+</table> 
+                                </td>
+                            </tr>
+</table>
+                    </td> 
+            </tr>
+</table>
+            
+    </td>
+</tr>
+</table>
+</body>
+</apex:page>

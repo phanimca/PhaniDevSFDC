@@ -1,0 +1,9 @@
+<apex:component controller="sf4twitter.SocialOutputLinkController">
+
+	<apex:attribute name="linkURL" description="Link URL" type="String" required="true" assignto="{!linkURL}"/>
+	<apex:attribute name="linkValue" description="Link Value" type="String" required="true"/>
+	<apex:attribute name="linkParameters" description="Link Parameters" type="String" required="false" assignto="{!linkParameters}"/>
+
+	<apex:outputLink value="javascript:window.location='{!LinkURLAndParameters}';">{!linkValue}</apex:outputLink> 
+
+</apex:component>

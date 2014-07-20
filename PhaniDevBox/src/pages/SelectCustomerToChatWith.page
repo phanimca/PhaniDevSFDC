@@ -1,0 +1,44 @@
+<apex:page controller="SelectCustomerToChatWithController">
+<apex:pageMessages />
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection >
+
+<apex:pageBlockTable value="{!customersList}" var="c" id="customersList">
+<apex:column headerValue="First Name">
+{!c.customer.Customer_First_Name__c}
+</apex:column>
+<apex:column headerValue="Last Name">
+{!c.customer.Customer_Last_Name__c}
+</apex:column>
+<apex:column headerValue="Email Address">
+{!c.customer.Customer_Email_Address__c}
+</apex:column>
+<apex:column style="text-align:center">
+<apex:commandButton action="{!startChatWithCustomer}" value="Start chatting" rerender="dummyPb,caseId,customersList" oncomplete="openChatWidget();">
+	<apex:param name="currentRow" assignto="{!selectedCustomerIndex}" value="{!c.index}" />
+</apex:commandButton>
+
+</apex:column>
+</apex:pageBlockTable>
+
+<br/>
+<apex:commandButton action="{!cancel}" value="Cancel"/>
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+<apex:pageBlock id="dummyPb" rendered="false">
+</apex:pageBlock>
+<div style="display:none">
+<apex:outputText value="{!caseId}" id="caseId" style="displaye:none"/>
+</div>
+<script>
+function openChatWidget() {	
+	var apiUrl = "{!$Api.Partner_Server_URL_190}";	
+	var caseId = document.getElementById('{!$Component.caseId}').innerHTML;	
+	var url = apiUrl.substr(0,apiUrl.lastIndexOf('/services')) + '/apex/ChatWidget?caseId=' + caseId;	
+	window.open(url,"_blank","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=400,height=300,left=0,top=0,screen-X=0,screen-Y=0")
+}
+</script>
+</apex:form>
+</apex:page>

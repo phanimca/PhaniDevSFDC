@@ -1,0 +1,28 @@
+<apex:component id="cpheader">
+  
+    
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/reset.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/fm-core.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/base.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/module.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/menu.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/jquery-1.4.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/scripts.js')}"/>
+  
+  
+  
+  
+    
+    <!-- Header Starts -->
+        <div id="hd" role="banner" class="header">
+            <div class="fm-main yui-gd">
+                <div class="yui-u first logo">
+                    <apex:image url="{!URLFOR($Resource.CustomerPortal, 'media/images/logo.gif')}" alt="Fellon McCord Logo" title="Welcome to Fellon McCord" />
+                    
+                </div>
+                <div class="yui-u align-right"></div>
+            </div>
+        </div>
+    <!-- Header Ends -->
+  
+</apex:component>

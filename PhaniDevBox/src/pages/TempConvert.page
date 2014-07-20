@@ -1,0 +1,11 @@
+<apex:page controller="TempConvertClass">
+  <!-- Begin Default Content REMOVE THIS -->
+  <apex:form >
+  <h1> Enter the tempature in Centigrade : <apex:inputText value="{!c}"  rendered="true"  /> </h1>
+  <br/> <br/> <br/><apex:commandButton value="convert" action="{!convert}"/> <br/>
+  <h1> Output in F : <apex:outputText value="{!f}" rendered="true"/> </h1>
+
+  </apex:form>
+  
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

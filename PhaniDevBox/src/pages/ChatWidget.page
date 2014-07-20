@@ -1,0 +1,90 @@
+<apex:page controller="ChatWidgetController" showheader="false" sidebar="false" >
+	<apex:form >    
+		<apex:actionFunction name="rerenderLogicPanel" rerender="logicPanel,buttonPanel" />
+		<div id="mainContainer" style="border: 1px solid #B5B5B5; width:350px; padding-left:5px;background-color:#CCCCFF">		
+			<div style="width:325px;height:150px;overflow:auto; margin:3px;background-color:#E5ECFF" id="chatContainer">        
+				<table id="chatTable" width="100%">
+					<tbody>						
+					</tbody>
+				</table> 		
+			</div>
+			<script>
+				var myPreviousPost = null;
+				function addTableRow(myPost){					
+					if(myPost != null && myPost != '' && myPreviousPost != myPost){
+					//if(myPost != null && myPost != ''){
+					    myPreviousPost = myPost;			
+						var chatTable = document.getElementById('chatTable');
+						var tBody = chatTable.getElementsByTagName('tbody')[0];
+						var newTR = document.createElement('tr');
+						var newTD = document.createElement('td');
+						newTD.innerHTML = myPost;
+						newTR.appendChild (newTD);
+						tBody.appendChild(newTR);
+						var objDiv = document.getElementById("chatContainer");
+						objDiv.scrollTop = objDiv.scrollHeight;
+					}
+				}
+			</script>
+			<apex:outputPanel id="logicPanel">
+			<apex:outputText value="{!latestComment}" id="latestComment" style="display:none" escape="false"/>
+				<script type="text/javascript">			    
+					var text= document.getElementById('{!$Component.latestComment}').innerHTML;					
+					addTableRow(text);				
+				</script>
+			</apex:outputPanel>		
+			<br/>
+			<table width="200px">
+			<tr><td with="100%">
+			<apex:outputPanel id="inputBoxPanel">
+				<!-- <apex:inputTextarea value="{!myPost}"/>-->
+				<textarea rows="3" cols="55" id="inputTextArea"/>			
+			</apex:outputPanel>
+			</td></tr>
+			<tr><td>
+			<apex:inputHidden value="{!myPost}" id="hiddenInputField"/>		
+			</td></tr>
+			<tr><td>
+				<apex:outputPanel id="buttonPanel" >
+					<table width="100%">
+					<tr><td>
+						<apex:commandButton onclick="assignPostValue();" oncomplete="cleanPostValue();" action="{!postMessage}" value="Send Message" id="postButton" rerender="inputBoxPanel,logicPanel" rendered="{!NOT(ISBLANK(caseId))}"/>
+					</td>
+					<td align="right">					
+						<apex:commandButton oncomplete="closeChatWindow();" action="{!endChat}" value="End Chat" id="endChatButton" rerender="inputBoxPanel,logicPanel,userType,caseId" />
+					</td>
+					</tr>			
+					</table>		
+				</apex:outputPanel>
+			</td></tr>
+			</table>
+			<div style="display:none">
+				<apex:outputText value="{!userType}" id="userType" style="displaye:none"/>
+				<apex:outputText value="{!caseId}" id="caseId" style="displaye:none"/>
+			</div>
+			<script type="text/javascript">
+				var t;	
+				function timedCount(){					
+					rerenderLogicPanel();	
+					t=setTimeout("timedCount()",2000);
+				}
+				setTimeout("timedCount()",2000);	
+				//timedCount();
+				function assignPostValue(){					
+					document.getElementById('{!$Component.hiddenInputField}').value = document.getElementById('inputTextArea').value;
+					document.getElementById('inputTextArea').value = '';
+				}
+				function cleanPostValue(){
+					document.getElementById('{!$Component.hiddenInputField}').value = '';									
+				}	
+				function closeChatWindow(){
+					var caseId = document.getElementById('{!$Component.caseId}').innerHTML;
+					var userType = document.getElementById('{!$Component.userType}').innerHTML;
+					if(userType != 'Guest')
+						window.opener.location.href = '/' + caseId;
+					self.close();
+				}				
+			</script>
+			</div>
+	</apex:form>	
+</apex:page>

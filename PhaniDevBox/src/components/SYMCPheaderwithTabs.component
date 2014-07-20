@@ -1,0 +1,58 @@
+<apex:component id="cpheaderwithTabs">
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/reset.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/fm-core.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/base.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/module.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/menu.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/jquery-1.4.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/scripts.js')}"/>
+  
+    <!-- Header Starts -->
+        <div id="hd" role="banner" class="header">
+            <div class="fm-main yui-gd">
+                <div class="yui-u first logo">
+                    <apex:image url="{!URLFOR($Resource.CustomerPortal, 'media/images/logo.gif')}" alt="Fellon McCord Logo" title="Welcome to Fellon McCord" />
+                </div>
+                <div class="yui-u align-right fltrt">
+
+                        <div class="mod" id="toplinks">
+                            <span class="s top"><span class="s tl"></span><span class="s tr"></span></span>
+                            <div class="inner">
+                                <div class="bd">
+                                    <ul class="menu horiz fltrt">
+                                        <li class="callout">Welcome Guest !</li>
+                                        <li class="callout"><a href="#">View Profile</a></li>
+                                        <li><a href="#">My Cases</a></li>
+                                        <li><a href="#">Help</a></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <span class="s top"><span class="s tl"></span><span class="s tr"></span></span>
+                        </div><!-- end toplinks -->
+
+                    <!-- Top Navigation Starts-->
+                    <div role="navigation" class="mod basic" id="mainnav">
+                        <span class="s top"><span class="s tl"></span><span class="s tr"></span></span>
+                        <div class="inner">
+                            <div class="bd">
+                                <ul class="menu drop light strong">
+                                    <li class="active"><a href="#">Home</a></li>
+                                    <li><a href="#">Account Team</a></li>
+                                    <li><a href="#">Client Contacts</a></li>
+                                    <li><a href="#">Reports</a></li>
+                                    <li><a href="#">Publications</a></li>
+                                    <li><a href="#">Contracts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <span class="s bottom"><span class="s bl"></span><span class="s br"></span></span>
+                    </div>
+                    <!-- Top Navigation Ends -->
+                </div>
+            </div>
+        </div>
+    <!-- Header Ends -->
+   
+  
+</apex:component>

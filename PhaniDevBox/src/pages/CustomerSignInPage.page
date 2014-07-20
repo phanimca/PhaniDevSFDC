@@ -1,0 +1,35 @@
+<apex:page controller="CustomerSignInPageController">
+<apex:form >
+
+<table width="260px" cellspacing="5px">
+<tr>
+<td>
+<apex:outputLabel value="First Name " for="firstName"/>
+</td>
+<td>
+<apex:inputField value="{!signInInfo.Customer_First_Name__c}" id="firstName" required="true" />
+
+
+</td>
+</tr>
+<tr>
+<td>
+<apex:outputLabel value="Last Name " for="lastName"/>
+</td>
+<td>
+<apex:inputField value="{!signInInfo.Customer_Last_Name__c}" id="lastName" required="true" />
+</td>
+</tr>
+<tr>
+<td>
+<apex:outputLabel value="Email Address " for="email"/>
+</td>
+<td>
+<apex:inputField value="{!signInInfo.Customer_Email_Address__c}" id="email" required="true" />
+</td>
+</tr>
+</table>
+<br/>
+<apex:commandButton action="{!saveSignInInfo}" value="Start chatting" />
+</apex:form>
+</apex:page>

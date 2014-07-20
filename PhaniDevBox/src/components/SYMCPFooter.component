@@ -1,0 +1,27 @@
+<apex:component id="cpfooter">
+  <head>
+    <title>Fellon McCord - Client Login </title>
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/reset.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/fm-core.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/base.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/module.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerPortal, 'media/styles/menu.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/jquery-1.4.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerPortal,'media/scripts/scripts.js')}"/>
+  </head>
+  
+  
+  
+    <!-- Footer Starts -->
+        <div id="ft" role="banner" class="footer">
+            <div class="fm-main">
+                <p class="strong">
+                    &copy; Copyright Fellon-McCord. All Rights Reserved. Fellon-McCord &amp; Associates, LLC<br />
+                    10200 Forest Green Blvd. - Suite 601 - Louisville, KY 40223 - (866) 718-6441 - (502) 214-9400 - <a href="mailto:info@fellonmccord.com">info@fellonmccord.com</a> <a href="#" class="nav">Home</a> | <a href="#" class="nav">Contact</a>
+                </p>
+            </div>
+        </div>
+    <!-- Footer Ends --> 
+   
+  
+</apex:component>

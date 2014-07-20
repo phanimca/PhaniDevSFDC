@@ -1,0 +1,4 @@
+<apex:component controller="cloud1.DialLeadController" >
+    <Say> Connecting to the Leed </Say>
+    <Dial>{!leadPh}</Dial> 
+</apex:component>

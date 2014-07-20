@@ -1,0 +1,9 @@
+<apex:page controller="cloud1.DialCaseController" action="{!updtTsk}" contentType="text/xml" showHeader="false" >
+    <Response>
+    
+     <Say>{!msgToCase1}</Say>
+     <Say>{!msgToCase2}</Say>
+     <Say>{!msgToCase3}</Say>
+  
+   </Response>
+</apex:page>
